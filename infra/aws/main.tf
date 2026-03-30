@@ -8,10 +8,6 @@ locals {
   }
 }
 
-data "aws_ssm_parameter" "amazon_linux_2023_ami" {
-  name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
-}
-
 resource "aws_vpc" "main" {
   cidr_block           = "10.42.0.0/16"
   enable_dns_hostnames = true
@@ -120,7 +116,7 @@ resource "aws_iam_instance_profile" "workers" {
 
 resource "aws_instance" "workers" {
   count                       = var.worker_count
-  ami                         = data.aws_ssm_parameter.amazon_linux_2023_ami.value
+  ami                         = var.worker_ami_id
   instance_type               = var.worker_instance_type
   subnet_id                   = aws_subnet.public.id
   vpc_security_group_ids      = [aws_security_group.workers.id]

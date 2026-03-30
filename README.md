@@ -7,7 +7,7 @@ This repo is now split into a small Bun workspace monorepo so you can build the 
 - `apps/web`: Next.js 16 frontend
 - `apps/api`: Elysia API running on Bun
 - `apps/cli`: Bun CLI for local automation and GitHub Actions
-- `packages/db`: Drizzle schema and Neon client
+- `packages/db`: Drizzle schema and CockroachDB client
 
 ## Run It
 
@@ -77,4 +77,5 @@ export CLIRCEL_API_URL=http://localhost:3001
 
 - Keep the warm-worker scheduler in the API, not in the Next app.
 - Do not add Redis until the database-backed lease flow is actually working.
-- Neon is fine for control-plane state. User workloads should still run on workers, not inside this API service.
+- Auth is handled in `apps/web` with Better Auth, GitHub OAuth, Drizzle, and CockroachDB.
+- User workloads should still run on workers, not inside this API service.

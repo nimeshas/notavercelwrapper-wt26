@@ -1,16 +1,42 @@
 #!/bin/bash
 set -euxo pipefail
 
-dnf update -y
-dnf install -y docker git unzip tar curl
+exec > >(tee /var/log/worker-bootstrap.log | logger -t worker-bootstrap -s 2>/dev/console) 2>&1
+
+retry() {
+  local attempts="$1"
+  shift
+
+  local count=1
+  until "$@"; do
+    if [ "$count" -ge "$attempts" ]; then
+      echo "Command failed after $${attempts} attempts: $$*"
+      return 1
+    fi
+
+    count=$((count + 1))
+    sleep 5
+  done
+}
+
+retry 5 dnf makecache --refresh
+retry 5 dnf install -y docker git unzip tar curl
 
 systemctl enable docker
-systemctl start docker
+systemctl restart docker
 
-usermod -aG docker ec2-user
+for user in ec2-user ssm-user; do
+  if id "$user" >/dev/null 2>&1; then
+    usermod -aG docker "$user"
+  fi
+done
 
 mkdir -p /opt/${project_name}
 cat >/etc/motd <<EOF
 ${project_name} ${environment} warm worker
 Docker is installed and ready.
+Bootstrap log: /var/log/worker-bootstrap.log
 EOF
+
+docker --version
+systemctl --no-pager --full status docker | sed -n '1,12p'

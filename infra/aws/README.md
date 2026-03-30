@@ -35,6 +35,8 @@ terraform plan
 terraform apply
 ```
 
+If your IAM user is restricted, keep `worker_ami_id` set explicitly in `terraform.tfvars`. The default value is an Amazon Linux 2023 AMI for `us-east-1`, but you should replace it if you change regions.
+
 ## Notes
 
 - No inbound ports are opened by default.

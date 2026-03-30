@@ -34,6 +34,12 @@ variable "worker_instance_type" {
   default     = "t3.small"
 }
 
+variable "worker_ami_id" {
+  description = "AMI ID for the worker instances. Set this explicitly to avoid DescribeImages permission requirements."
+  type        = string
+  default     = "ami-0953476d60561c955"
+}
+
 variable "worker_volume_size_gb" {
   description = "Root volume size for each worker."
   type        = number

@@ -141,3 +141,44 @@ Best Hackathon Story
   - idle pool cost: $X/hour
 
   That is much stronger than listing 10 features.
+
+  For GitHub Actions, the pattern is straightforward:
+
+  - uses: oven-sh/setup-bun@v2
+  - run: bun install
+  - run: bun run cli -- jobs:create --runtime node --source-url "$ARTIFACT_URL" --entry-command "npm start"
+    env:
+      CLIRCEL_API_URL: ${{ secrets.CLIRCEL_API_URL }}
+
+
+
+
+
+• I set up a minimal AWS Terraform stack under infra/aws: infra/aws/main.tf, infra/aws/
+  variables.tf, infra/aws/terraform.tfvars.example, and the EC2 bootstrap script infra/aws/
+  user_data.sh.tftpl. It creates a VPC, one public subnet, an SSM-enabled instance role, and
+  Terraform does not need separate auth. It just needs AWS credentials in your shell.
+  Fastest hackathon path:
+
+  1. In AWS Console, create or use an IAM user with credentials.
+  2. Give it enough permissions to create EC2, VPC, IAM role/profile, and SSM resources.
+     For hackathon speed, AdministratorAccess works, but it is broad.
+  3. Export credentials locally:
+
+  export AWS_ACCESS_KEY_ID="..."
+  export AWS_SECRET_ACCESS_KEY="..."
+  export AWS_DEFAULT_REGION="us-east-1"
+  # only if AWS gave you one:
+  export AWS_SESSION_TOKEN="..."
+
+  Then deploy:
+
+  cd /home/ashman/Documents/projects/notavercelwrapper/infra/aws
+  cp terraform.tfvars.example terraform.tfvars
+  terraform init
+  terraform plan
+  terraform apply
+
+  After apply, check outputs:
+
+  terraform output
