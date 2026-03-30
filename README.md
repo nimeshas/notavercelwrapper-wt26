@@ -52,7 +52,7 @@ bunx drizzle-kit generate
 bunx drizzle-kit push
 ```
 
-The Drizzle configs resolve `apps/api/.env` from the repo root, so `DATABASE_URL` stays in one place for the API and DB tooling. Shell environment variables still win over file-based values.
+The DB scripts automatically load `apps/api/.env`, so keep `DATABASE_URL` there and the API plus migration commands will stay in sync. The web app also needs its own auth variables in `apps/web/.env.local`; copy from `apps/web/.env.example` and point both apps at the same CockroachDB cluster. Shell environment variables still win over file-based values.
 
 ## CLI
 

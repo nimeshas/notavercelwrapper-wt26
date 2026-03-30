@@ -290,13 +290,15 @@ a:hover {
   --muted: #64584e;
   --accent: #1f6feb;
   --accent-strong: #0d3b8e;
+  --app-font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --app-font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+  --font-sans: var(--app-font-sans);
+  --font-mono: var(--app-font-mono);
 }
 
 * {
@@ -304,6 +306,7 @@ a:hover {
 }
 
 html {
+  min-height: 100%;
   background:
     radial-gradient(circle at top left, rgba(31, 111, 235, 0.18), transparent 28%),
     radial-gradient(circle at 80% 20%, rgba(255, 149, 0, 0.16), transparent 26%),
@@ -311,9 +314,11 @@ html {
 }
 
 body {
+  margin: 0;
+  min-height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-family: var(--app-font-sans);
 }
 
 a,
