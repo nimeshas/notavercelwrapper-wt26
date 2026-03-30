@@ -2,25 +2,22 @@
   "name": "clircel",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "bun@1.3.9",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "next": "16.2.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "dev": "bun run dev:web",
+    "dev:web": "bun --cwd apps/web run dev",
+    "dev:api": "bun --cwd apps/api run dev",
+    "build": "bun run build:web && bun run build:api",
+    "build:web": "bun --cwd apps/web run build",
+    "build:api": "bun --cwd apps/api run build",
+    "lint": "bun run lint:web && bun run lint:api",
+    "lint:web": "bun --cwd apps/web run lint",
+    "lint:api": "bun --cwd apps/api run lint",
+    "db:generate": "bun --cwd packages/db run generate",
+    "db:migrate": "bun --cwd packages/db run migrate"
   }
 }
