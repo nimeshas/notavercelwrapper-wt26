@@ -1,0 +1,24 @@
+{
+  "name": "@clircel/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clircel/db": "workspace:*",
+    "@elysiajs/cors": "^1.4.0",
+    "drizzle-orm": "^0.44.6",
+    "elysia": "^1.4.16",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  }
+}
