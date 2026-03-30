@@ -283,4 +283,49 @@ a:hover {
   .shell {
     margin-top: 1.25rem;
   }
+  --background: #f4f0e8;
+  --foreground: #171411;
+  --panel: rgba(255, 251, 245, 0.78);
+  --panel-border: rgba(34, 25, 15, 0.12);
+  --muted: #64584e;
+  --accent: #1f6feb;
+  --accent-strong: #0d3b8e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(31, 111, 235, 0.18), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(255, 149, 0, 0.16), transparent 26%),
+    linear-gradient(180deg, #f6f1e7 0%, #efe4d2 100%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+}
+
+a,
+button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+::selection {
+  background: rgba(31, 111, 235, 0.22);
 }

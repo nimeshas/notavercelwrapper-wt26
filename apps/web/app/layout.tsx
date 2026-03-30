@@ -5,6 +5,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Clircel Control Plane",
   description: "Minimal UI for job submission and pipeline tracking",
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Clircel Sign In",
+  description: "Sign in with GitHub and grant repository access to Clircel.",
 };
 
 export default function RootLayout({
@@ -15,6 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
