@@ -43,7 +43,14 @@ bun run db:generate
 bun run db:migrate
 ```
 
-The DB scripts automatically load `apps/api/.env`, so keep `DATABASE_URL` there and the API plus migration commands will stay in sync.
+You can also run Drizzle directly from the repo root:
+
+```bash
+bunx drizzle-kit generate
+bunx drizzle-kit push
+```
+
+The Drizzle configs resolve `apps/api/.env` from the repo root, so `DATABASE_URL` stays in one place for the API and DB tooling. Shell environment variables still win over file-based values.
 
 ## CLI
 

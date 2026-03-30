@@ -20,7 +20,7 @@
     "lint:api": "bun run --cwd apps/api lint",
     "lint:cli": "bun run --cwd apps/cli lint",
     "cli": "bun run --cwd apps/cli start",
-    "db:generate": "bun run --cwd packages/db --env-file ../../apps/api/.env generate",
-    "db:migrate": "bun run --cwd packages/db --env-file ../../apps/api/.env migrate"
+    "db:generate": "drizzle-kit generate --config=drizzle.config.ts",
+    "db:migrate": "drizzle-kit push --config=drizzle.config.ts"
   }
 }
