@@ -9,15 +9,15 @@
   ],
   "scripts": {
     "dev": "bun run dev:web",
-    "dev:web": "bun --cwd apps/web run dev",
-    "dev:api": "bun --cwd apps/api run dev",
+    "dev:web": "bun run --cwd apps/web dev",
+    "dev:api": "bun run --cwd apps/api dev",
     "build": "bun run build:web && bun run build:api",
-    "build:web": "bun --cwd apps/web run build",
-    "build:api": "bun --cwd apps/api run build",
+    "build:web": "bun run --cwd apps/web build",
+    "build:api": "bun run --cwd apps/api build",
     "lint": "bun run lint:web && bun run lint:api",
-    "lint:web": "bun --cwd apps/web run lint",
-    "lint:api": "bun --cwd apps/api run lint",
-    "db:generate": "bun --cwd packages/db run generate",
-    "db:migrate": "bun --cwd packages/db run migrate"
+    "lint:web": "bun run --cwd apps/web lint",
+    "lint:api": "bun run --cwd apps/api lint",
+    "db:generate": "bun run --cwd packages/db --env-file ../../apps/api/.env generate",
+    "db:migrate": "bun run --cwd packages/db --env-file ../../apps/api/.env migrate"
   }
 }

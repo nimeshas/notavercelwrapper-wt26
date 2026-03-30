@@ -85,3 +85,15 @@
       - logs
       - success/failure
   9. Only after that, add automatic provisioning or autoscaling.
+
+
+  
+  bun install
+  cp apps/api/.env.example apps/api/.env
+  bun run dev:web
+  bun run dev:api
+
+  Then set DATABASE_URL and run:
+
+  bun run db:generate
+  bun run db:migrate

@@ -32,10 +32,11 @@ bun run dev:api
 Generate and push Drizzle schema changes:
 
 ```bash
-export DATABASE_URL=postgresql://USER:PASSWORD@HOST/DB?sslmode=require
 bun run db:generate
 bun run db:migrate
 ```
+
+The DB scripts automatically load `apps/api/.env`, so keep `DATABASE_URL` there and the API plus migration commands will stay in sync.
 
 ## Hackathon Notes
 
